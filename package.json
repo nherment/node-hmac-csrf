@@ -1,6 +1,6 @@
 {
   "name": "hmac-csrf",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "sessionless csrf with origin check, falling back to cookie based hmac token when origin is not present",
   "main": "hmac-csrf.js",
   "scripts": {
