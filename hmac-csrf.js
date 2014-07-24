@@ -125,7 +125,6 @@ function generateHash(secret, algorithm, expirationTimestamp, sessionId) {
 function generateCSRF(secret, algorithm, validityDelay, sessionId) {
   if(sessionId) {
     var expirationTimestamp = Date.now() + validityDelay;
-    console.log('EXPIRATION', validityDelay, new Date(expirationTimestamp))
     var hash = generateHash(secret, algorithm, expirationTimestamp, sessionId)
     hash = '{' + expirationTimestamp + '}' + hash;
 
