@@ -14,23 +14,23 @@ cookies with a stateless server.
 
 
 
-  var HmacCsrf = require('hmac-csrf')
+    var HmacCsrf = require('hmac-csrf')
 
-  var options = {
-    'secret': '123456',
-    'validityDelay': 86400,         // the delay after which a CSRF token expires
-    'sessionCookie': 'connect.sid'  // the cookie used in the HMAC generation
-    'algorithm': 'sha256',          // the HMAC algorithm
-    'origin': null,                 // If the HTTP origin header should be used for CSRF protection, put it here
-    'templateAttr': 'locals',       // the '_csrf' token will be set on res[templateAttr]
-    'ignore': [                     // do not run CSRF validation for these paths
-      '/foo/bar'
-    ],
-    'keys': {
-      'query': '_csrf',
-      'body': '_csrf',
-      'header': 'x-csrf-token'
+    var options = {
+      'secret': '123456',
+      'validityDelay': 86400,         // the delay after which a CSRF token expires
+      'sessionCookie': 'connect.sid'  // the cookie used in the HMAC generation
+      'algorithm': 'sha256',          // the HMAC algorithm
+      'origin': null,                 // If the HTTP origin header should be used for CSRF protection, put it here
+      'templateAttr': 'locals',       // the '_csrf' token will be set on res[templateAttr]
+      'ignore': [                     // do not run CSRF validation for these paths
+        '/foo/bar'
+      ],
+      'keys': {
+        'query': '_csrf',
+        'body': '_csrf',
+        'header': 'x-csrf-token'
+      }
     }
-  }
 
   app.use(HmacCsrf(options))
