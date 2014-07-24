@@ -9,13 +9,13 @@ module.exports = function(options) {
 
   var sessionCookie = options.sessionCookie || 'connect.sid'
   var secret = options.secret || uuid.v4();
-  var validityDelay = options.validityDelay || (60 * 60 * 1000);
+  var validityDelay = options.validityDelay || 86400*1000/*24h*/;
   var algorithm = options.algorithm || 'sha256';
   var templateResponseAttr = options.templateAttr || 'locals';
 
   var keys = {
-    query: options.keys.query || '_csrf',
-    body: options.keys.body || '_csrf',
+    query : options.keys.query  || '_csrf',
+    body  : options.keys.body   || '_csrf',
     header: options.keys.header || 'x-csrf-token'
   };
 
@@ -82,11 +82,14 @@ function csrfTokenValid(secret, algorithm, validityDelay, sessionId, keys, req) 
       var expectedHash = generateHash(secret, algorithm, expirationTimestamp, sessionId);
       if(actualHash === expectedHash) {
         return true;
+      } else {
+        console.log('CSRF attempt. Invalid token.');
       }
+    } else {
+      console.log('CSRF attempt. Expired token.', new Date(expirationTimestamp));
     }
   }
 
-  console.log('CSRF attempt. Invalid token.');
   return false;
 
 }
@@ -122,7 +125,7 @@ function generateHash(secret, algorithm, expirationTimestamp, sessionId) {
 function generateCSRF(secret, algorithm, validityDelay, sessionId) {
   if(sessionId) {
     var expirationTimestamp = Date.now() + validityDelay;
-
+    console.log('EXPIRATION', validityDelay, new Date(expirationTimestamp))
     var hash = generateHash(secret, algorithm, expirationTimestamp, sessionId)
     hash = '{' + expirationTimestamp + '}' + hash;
 

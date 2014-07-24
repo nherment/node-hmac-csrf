@@ -13,24 +13,26 @@ cookies with a stateless server.
 - Compatible with templates
 
 
-
+```
     var HmacCsrf = require('hmac-csrf')
 
     var options = {
-      'secret': '123456',
-      'validityDelay': 86400,         // the delay after which a CSRF token expires
+      'secret'       : '123456',
+      'validityDelay': 86400000,      // the delay after which a CSRF token expires, in ms
       'sessionCookie': 'connect.sid'  // the cookie used in the HMAC generation
-      'algorithm': 'sha256',          // the HMAC algorithm
-      'origin': null,                 // If the HTTP origin header should be used for CSRF protection, put it here
-      'templateAttr': 'locals',       // the '_csrf' token will be set on res[templateAttr]
+      'algorithm'    : 'sha256',      // the HMAC algorithm
+      'origin'       : null,          // If the HTTP origin header should be used for CSRF protection, put it here
+      'templateAttr' : 'locals',      // the '_csrf' token will be set on res[templateAttr]
       'ignore': [                     // do not run CSRF validation for these paths
         '/foo/bar'
       ],
       'keys': {
-        'query': '_csrf',
-        'body': '_csrf',
-        'header': 'x-csrf-token'
+        'query'      : '_csrf',
+        'body'       : '_csrf',
+        'header'     : 'x-csrf-token'
       }
     }
 
-  app.use(HmacCsrf(options))
+    // set the middleware on express (look at express documentation)
+    app.use(HmacCsrf(options))
+```
