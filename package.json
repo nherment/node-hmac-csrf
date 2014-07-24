@@ -1,0 +1,29 @@
+{
+  "name": "hmac-csrf",
+  "version": "0.1.0",
+  "description": "sessionless csrf with origin check, falling back to cookie based hmac token when origin is not present",
+  "main": "hmac-csrf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nherment/node-hmac-csrf.git"
+  },
+  "keywords": [
+    "csrf",
+    "hmac",
+    "sessionless",
+    "cookie",
+    "origin"
+  ],
+  "author": "Nicolas Herment <nherment@gmail.com>",
+  "license": "Public Domain",
+  "bugs": {
+    "url": "https://github.com/nherment/node-hmac-csrf/issues"
+  },
+  "homepage": "https://github.com/nherment/node-hmac-csrf",
+  "dependencies": {
+    "uuid": "1.4.1"
+  }
+}
