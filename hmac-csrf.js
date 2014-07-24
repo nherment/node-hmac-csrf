@@ -30,7 +30,6 @@ module.exports = function(options) {
     if('GET' == req.method) {
       if(res[templateResponseAttr]) {
         res[templateResponseAttr]._csrf = generateCSRF(secret, algorithm, validityDelay, sessionId);
-        console.log('SET TOKEN', res[templateResponseAttr]._csrf)
       }
       return next();
     }
@@ -106,7 +105,6 @@ function extractCSRFToken(keys, req) {
 }
 
 function extractSessionId(sessionCookie, req, res) {
-  console.log('COOKIE', sessionCookie, req.cookies)
   if(req.cookies && req.cookies[sessionCookie]) {
     return req.cookies[sessionCookie];
   }
