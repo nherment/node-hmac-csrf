@@ -13,7 +13,7 @@ cookies with a stateless server.
 - Compatible with templates
 
 
-```
+```js
     var HmacCsrf = require('hmac-csrf')
 
     var options = {
